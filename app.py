@@ -5,7 +5,10 @@ import pandas as pd
 
 # Load models
 rf_model = pickle.load(open('model1.pkl', 'rb'))
-xgb_model = pickle.load(open('model2.pkl', 'rb'))
+import xgboost as xgb
+xgb_model = xgb.Booster()
+xgb_model.load_model("xgb_model.json")
+
 meta_model = pickle.load(open('model3.pkl', 'rb'))
 
 st.title("🧠 Brain Stroke Risk Predictor")
