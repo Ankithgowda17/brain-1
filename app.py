@@ -25,7 +25,7 @@ with col1:
     hypertension = st.selectbox("Hypertension", ["No", "Yes"])
     heart_disease = st.selectbox("Heart Disease", ["No", "Yes"])
     ever_married = st.selectbox("Ever Married", ["Yes", "No"])
-    work_type = st.selectbox("Work Type", ["Private", "Self-employed", "Govt_job", "children", "Never_worked"])
+    work_type = st.selectbox("Work Type", ["Private", "Self-employed", "Govt_job", "Unemployed", "Never_worked"])
     residence_type = st.selectbox("Residence Type", ["Urban", "Rural"])
     avg_glucose_level = st.number_input("Average Glucose Level", min_value=50.0, max_value=300.0, value=100.0)
     bmi = st.number_input("BMI", min_value=10.0, max_value=60.0, value=25.0)
