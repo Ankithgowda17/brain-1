@@ -82,7 +82,19 @@ if st.button("Predict Stroke Risk"):
     exercise_map = {'never': 0, '1-2x/wk': 1, '3-5x/wk': 2, 'daily': 3}
     alcohol_map = {'never': 0, 'occasional': 1, 'regular': 2}
     smoking_map = {'never smoked': 0, 'formerly smoked': 1, 'smokes': 2}
+    # Mapping for work_type
+    work_type_map = {
+        'Govt_job': 0,
+        'Never_worked': 1,
+        'Private': 2,
+        'Self-employed': 3,
+        'Unemployed': 4
+    }
     
+    # Apply mapping to the work_type column
+    input_data['work_type'] = input_data['work_type'].map(work_type_map)
+    
+        
     # Apply mappings to input
     input_data['gender'] = input_data['gender'].map(gender_map)
     input_data['ever_married'] = input_data['ever_married'].map(yesno_map)
