@@ -117,17 +117,17 @@ if st.button("Predict Stroke Risk"):
     
 # Base predictions
     rf_pred = rf_model.predict_proba(input_data)[:, 1]
-    xgb_pred = xgb_model.predict_proba(input_data)[:, 1]
+    #xgb_pred = xgb_model.predict_proba(input_data)[:, 1]
     
     # Meta model prediction
-    stacked = np.column_stack((rf_pred, xgb_pred))
-    final_pred = meta_model.predict(stacked)[0]
-    final_prob = meta_model.predict_proba(stacked)[0][1]
+    # stacked = np.column_stack((rf_pred, xgb_pred))
+    # final_pred = meta_model.predict(stacked)[0]
+    # final_prob = meta_model.predict_proba(stacked)[0][1]
     
     # Display result
-    if final_pred == 1:
-        st.error(f"⚠️ The model predicts a HIGH RISK of stroke. (Probability: {final_prob:.2f})")
+    if rf_pred >0.5:
+        st.error(f"⚠️ The model predicts a HIGH RISK of stroke. (Probability: {rf_pred:.2f})")
         st.markdown("> Please consult a healthcare provider for further evaluation.")
     else:
-        st.success(f"✅  The model predicts a LOW RISK of stroke. (Probability: {final_prob:.2f})")
+        st.success(f"✅  The model predicts a LOW RISK of stroke. (Probability: {rf_pred:.2f})")
         st.markdown("> Keep maintaining a healthy lifestyle!")
