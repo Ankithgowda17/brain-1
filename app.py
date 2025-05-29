@@ -42,7 +42,7 @@ with col2:
 hypertension = 1 if hypertension == "Yes" else 0
 heart_disease = 1 if heart_disease == "Yes" else 0
 stroke_family_history = 1 if stroke_family_history == "Yes" else 0
-input_data=pd.DataFrame()
+#input_data=pd.DataFrame()
 # Final prediction on submit
 if st.button("Predict Stroke Risk"):
     input_data = pd.DataFrame({
@@ -69,16 +69,16 @@ if st.button("Predict Stroke Risk"):
         "HDL_cholesterol": [hdl_cholesterol]
     })
 # Base predictions
-rf_pred = rf_model.predict_proba(input_data)[:, 1]
-xgb_pred = xgb_model.predict_proba(input_data)[:, 1]
-
-# Meta model prediction
-stacked = np.column_stack((rf_pred, xgb_pred))
-final_pred = meta_model.predict(stacked)[0]
-final_prob = meta_model.predict_proba(stacked)[0][1]
-
-# Display result
-if final_pred == 1:
-    st.error(f"⚠️ High Stroke Risk (Probability: {final_prob:.2f})")
-else:
-    st.success(f"✅ Low Stroke Risk (Probability: {final_prob:.2f})")
+    rf_pred = rf_model.predict_proba(input_data)[:, 1]
+    xgb_pred = xgb_model.predict_proba(input_data)[:, 1]
+    
+    # Meta model prediction
+    stacked = np.column_stack((rf_pred, xgb_pred))
+    final_pred = meta_model.predict(stacked)[0]
+    final_prob = meta_model.predict_proba(stacked)[0][1]
+    
+    # Display result
+    if final_pred == 1:
+        st.error(f"⚠️ High Stroke Risk (Probability: {final_prob:.2f})")
+    else:
+        st.success(f"✅ Low Stroke Risk (Probability: {final_prob:.2f})")
