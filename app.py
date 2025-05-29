@@ -2,11 +2,14 @@ import streamlit as st
 import numpy as np
 import pickle
 import pandas as pd
+from xgboost import XGBClassifier
+
+
 
 # Load models
 rf_model = pickle.load(open('model1.pkl', 'rb'))
 import xgboost as xgb
-xgb_model = xgb.Booster()
+xgb_model = XGBClassifier(scale_pos_weight=5, eval_metric='logloss', use_label_encoder=False)
 xgb_model.load_model("xgb_model.json")
 
 meta_model = pickle.load(open('model3.pkl', 'rb'))
