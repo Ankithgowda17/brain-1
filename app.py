@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import pickle
+import pandas as pd
 
 # Load models
 rf_model = pickle.load(open('model1.pkl', 'rb'))
