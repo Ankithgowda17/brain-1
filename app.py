@@ -71,6 +71,35 @@ if st.button("Predict Stroke Risk"):
         "LDL_cholesterol": [ldl_cholesterol],
         "HDL_cholesterol": [hdl_cholesterol]
     })
+    # Mapping categorical values
+    gender_map = {'Male': 1, 'Female': 0}
+    yesno_map = {'Yes': 1, 'No': 0}
+    residence_map = {'Urban': 1, 'Rural': 0}
+    diet_map = {'healthy': 1, 'unhealthy': 0}
+    sleep_map = {'poor': 0, 'good': 1}
+    salt_map = {'low': 0, 'medium': 1, 'high': 2}
+    stress_map = {'low': 0, 'medium': 1, 'high': 2}
+    exercise_map = {'never': 0, '1-2x/wk': 1, '3-5x/wk': 2, 'daily': 3}
+    alcohol_map = {'never': 0, 'occasional': 1, 'regular': 2}
+    smoking_map = {'never smoked': 0, 'formerly smoked': 1, 'smokes': 2}
+    
+    # Apply mappings to input
+    input_data['gender'] = input_data['gender'].map(gender_map)
+    input_data['ever_married'] = input_data['ever_married'].map(yesno_map)
+    input_data['Residence_type'] = input_data['Residence_type'].map(residence_map)
+    input_data['diet_type'] = input_data['diet_type'].map(diet_map)
+    input_data['sleep_quality'] = input_data['sleep_quality'].map(sleep_map)
+    input_data['salt_intake'] = input_data['salt_intake'].map(salt_map)
+    input_data['stress_level'] = input_data['stress_level'].map(stress_map)
+    input_data['exercise_frequency'] = input_data['exercise_frequency'].map(exercise_map)
+    input_data['alcohol_intake'] = input_data['alcohol_intake'].map(alcohol_map)
+    input_data['smoking_status'] = input_data['smoking_status'].map(smoking_map)
+    
+    # Convert "Yes"/"No" for binary columns
+    # input_data['stroke_family_history'] = input_data['stroke_family_history'].map(yesno_map)
+    # input_data['heart_disease'] = input_data['heart_disease'].map(yesno_map)
+    # input_data['hypertension'] = input_data['hypertension'].map(yesno_map)
+    
 # Base predictions
     rf_pred = rf_model.predict_proba(input_data)[:, 1]
     xgb_pred = xgb_model.predict_proba(input_data)[:, 1]
