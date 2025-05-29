@@ -126,6 +126,8 @@ if st.button("Predict Stroke Risk"):
     
     # Display result
     if final_pred == 1:
-        st.error(f"⚠️ High Stroke Risk (Probability: {final_prob:.2f})")
+        st.error(f"⚠️ The model predicts a HIGH RISK of stroke. (Probability: {final_prob:.2f})")
+        st.markdown("> Please consult a healthcare provider for further evaluation.")
     else:
-        st.success(f"✅ Low Stroke Risk (Probability: {final_prob:.2f})")
+        st.success(f"✅  The model predicts a LOW RISK of stroke. (Probability: {final_prob:.2f})")
+        st.markdown("> Keep maintaining a healthy lifestyle!")
