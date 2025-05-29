@@ -41,7 +41,7 @@ with col2:
 hypertension = 1 if hypertension == "Yes" else 0
 heart_disease = 1 if heart_disease == "Yes" else 0
 stroke_family_history = 1 if stroke_family_history == "Yes" else 0
-
+input_data=pd.DataFrame()
 # Final prediction on submit
 if st.button("Predict Stroke Risk"):
     input_data = pd.DataFrame({
